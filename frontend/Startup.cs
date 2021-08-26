@@ -28,7 +28,7 @@ namespace frontend
             services.AddHttpClient<WeatherClient>(httpClient =>
             {
                 //include the backend application url once it is deployed to appservice
-                httpClient.BaseAddress = new Uri("https://api-mvc.azurewebsites.net/");
+                httpClient.BaseAddress = new Uri("https://weatherapii.azurewebsites.net");
             });
         }
 
