@@ -21,16 +21,31 @@ namespace frontend
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
+
+        //// Azure Key Vault ////
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
-
+            services.AddServerSideBlazor();
+            //services.AddScoped<InquiryService>();
             services.AddHttpClient<WeatherClient>(httpClient =>
             {
                 //include the backend application url once it is deployed to appservice
-                httpClient.BaseAddress = new Uri("https://weatherapii.azurewebsites.net");
+                //httpClient.BaseAddress = new Uri("https://weatherap.azurewebsites.net");
+                httpClient.BaseAddress = new Uri(Configuration.GetValue<string>("newurllink"));
             });
         }
+
+
+        // public void ConfigureServices(IServiceCollection services)
+        // {
+        //     services.AddRazorPages();
+        //     services.AddHttpClient<WeatherClient>(httpClient =>
+        //     {
+        //         //include the backend application url once it is deployed to appservice
+        //         httpClient.BaseAddress = new Uri("https://weatherap.azurewebsites.net");
+        //     });
+        // }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
