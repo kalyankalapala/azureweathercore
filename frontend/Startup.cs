@@ -32,7 +32,7 @@ namespace frontend
             {
                 //include the backend application url once it is deployed to appservice
                 //httpClient.BaseAddress = new Uri("https://weatherap.azurewebsites.net");
-                httpClient.BaseAddress = new Uri(Configuration.GetValue<string>("newurllink"));
+                httpClient.BaseAddress = new Uri(Configuration.GetValue<string>("WeatherAPIURL"));
             });
         }
 
